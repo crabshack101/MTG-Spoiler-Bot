@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 
-import auth from './auth';
+//import auth from './auth';
 
 import constants from './logic/constants';
 import { readWatchedSets, readPrefix } from './logic/common/io';
@@ -22,7 +22,7 @@ Log("Initializing bot...");
 global.bot = new Discord.Client(); /* global bot */
 
 try {
-    global.bot.login(auth.token);
+    global.bot.login(process.env.token);
 } catch (err) {
     Error(err);
 }
@@ -140,7 +140,7 @@ global.bot.on("disconnect", function (errMsg, code) {
     Error(`code ${code} : ${errMsg}`);
     if (code === 1000) {
         try {
-            global.bot.login(auth.token);
+            global.bot.login(process.env.token);
         } catch (err) {
             Error(err);
         }
